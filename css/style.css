@@ -75,3 +75,13 @@
 .prev {
   bottom: -20px;
 }
+
+#button,
+#button-2{
+  font-size: 2rem;
+  width: 200px;
+}
+
+#button{
+  margin-bottom: 5px;
+}

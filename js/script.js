@@ -1,6 +1,5 @@
 /*
 
-
 Consegna:
 1.Dai tre array contenenti:
  - una lista ordinata di 5 immagini,
@@ -12,26 +11,6 @@ Consegna:
 4. refactoring
 Bonus:
 aggiungere un effetto al cambio dell'immagine
-
-
-const items = [
-  "img/01.jpg",
-  "img/02.jpg",
-  "img/03.jpg",
-  "img/04.jpg",
-  "img/05.jpg"
-];
-
-const title = ["Svezia", "Svizzera", "Gran Bretagna", "Germania", "Paradise"];
-
-const text = [
-  "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.",
-  "Lorem ipsum",
-  "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-  "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,",
-  "Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,"
-];
-
 
 */
 
@@ -152,3 +131,49 @@ function slideUp() {
 
 next.addEventListener("click", slideDown);
 prev.addEventListener("click", slideUp);
+
+// aggiungo slideshow automatico 
+
+let startSlideShow = document.getElementById('button').addEventListener('click', startSetInterval);
+
+let myInterval;
+
+function startSetInterval() {
+    myInterval = setInterval(automaticSlideShow, 1000);
+}
+
+let stopSlideShow = document.getElementById('button-2').addEventListener('click', stopSetInterval);
+
+function stopSetInterval() {
+    clearInterval (myInterval)
+}
+
+function automaticSlideShow(){
+  for (let i = 0; i < items.length; i++) {
+
+    let itemsImmagine = items[i].immagine;
+    let itemsTitolo = items[i].titolo;
+    let itemsTesto = items[i].testo;
+  
+    let classActive = "";
+    if (i === currentIndexActive) {
+      classActive = "active";
+    }
+    itemTemplate += `
+    <div class="item ${classActive}">
+      <img src="${itemsImmagine}" />
+        <div class="title">
+          <h2>${itemsTitolo}</h2>
+          <p>${itemsTesto}</p>
+        </div>
+    </div>`;
+    thumbTemplate += `
+    <div class="thumb ${classActive}">
+      <img src="${itemsImmagine}" alt="" />
+    </div>`;
+  }
+  slideDown();
+}
+
+
+
