@@ -14,6 +14,7 @@ aggiungere un effetto al cambio dell'immagine
 
 */
 
+// creo l'array contenente i miei oggetti
 const items = [
   {
     immagine: 'img/01.jpg',
@@ -43,14 +44,18 @@ const items = [
 ];
 console.log(items);
 
-//variabile per raccogliere tutto l'html che va in items-container
+//variabili varie
 let itemTemplate = "";
-
 //variabile per raccogliere tutto l'html che va in thumbs-container
 let thumbTemplate = "";
-
 // preparo una varibile con l'indice dell'elemento attivo e la pongo inizialmente a 0 ovvero il primo elemento dell'array
 let currentIndexActive = 0;
+//metto nelle variabili next e prev i due pulsanti
+const next = document.querySelector(" .fa-circle-chevron-down");
+const prev = document.querySelector(" .fa-circle-chevron-up");
+// metto in due variabili rispettivamente i contenitori che si trovano nell'html
+const itemsContainer = document.querySelector(".items-container");
+const thumbsContainer = document.querySelector(".thumbs-container");
 
 //eseguo il ciclo for sull'array delle immagini (items), vado a prendermi gli oggetti e le chiavi che mi interessano e popolo l'html delle due varibaili da stampare nei due contenitori (immagini e thumbnails)
 for (let i = 0; i < items.length; i++) {
@@ -76,25 +81,14 @@ for (let i = 0; i < items.length; i++) {
     <img src="${itemsImmagine}" alt="" />
   </div>`;
 }
-//console.log(thumbTemplate);
-
-// metto in due variabili rispettivamente i contenitori che si trovano nell'html
-const itemsContainer = document.querySelector(".items-container");
-const thumbsContainer = document.querySelector(".thumbs-container");
-//console.log(itemContainer);
 
 //stampo l'html corrispondente nei due contenitori
 itemsContainer.innerHTML = itemTemplate;
 thumbsContainer.innerHTML += thumbTemplate;
 //document.querySelector(".item").classList.add("active");
 
-//Pulsanti
-//.next .fa-circle-chevron-down
-//.prev .fa-circle-chevron-up
-//metto nelle variabili next e prev i due pulsanti
-const next = document.querySelector(" .fa-circle-chevron-down");
-const prev = document.querySelector(" .fa-circle-chevron-up");
-//console.log(next, prev);
+
+//funzioni per avviare il carosello nei due sensi
 function slideDown() {
   //prendere immagine con currentIndexActive e togliere classe active
   const imgs = document.getElementsByClassName("item");
@@ -174,6 +168,5 @@ function automaticSlideShow(){
   }
   slideDown();
 }
-
 
 
